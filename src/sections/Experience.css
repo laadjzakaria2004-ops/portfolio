@@ -1,0 +1,177 @@
+.exp-section {
+  width: 100%;
+  min-height: 100vh;
+  background: #bbbfbf;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 80px;
+}
+
+.exp-title {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 200;
+  color: var(--color-dark);
+  letter-spacing: -1px;
+  margin-bottom: 48px;
+}
+
+/* ── LAYOUT ── */
+.exp-layout {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Ligne verticale centrale */
+.exp-layout::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(26, 35, 50, 0.25);
+  transform: translateX(-50%);
+}
+
+/* ── CHAQUE LIGNE ── */
+.exp-row {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: 0;
+  margin-bottom: 32px;
+  align-items: center;
+}
+
+/* ── SLOT CARTE ── */
+.exp-card-slot {
+  padding: 0 24px;
+}
+
+/* ── TIMELINE CENTRALE ── */
+.exp-timeline-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.exp-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-dark);
+  flex-shrink: 0;
+}
+
+/* ── CARTE ── */
+.exp-card {
+  background: rgba(255, 255, 255, 0.174);
+  border-radius: 16px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+
+.exp-card:hover {
+  transform: translateY(-2px);
+}
+
+.exp-card-title {
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 1.2;
+}
+
+.exp-card-meta {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(26, 35, 50, 0.55);
+}
+
+.exp-card-desc {
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 300;
+  color: var(--color-dark);
+  line-height: 1.7;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.exp-tag {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--color-dark);
+  border: 1px solid rgba(26, 35, 50, 0.3);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .exp-section {
+    padding: 100px 40px;
+  }
+
+  .exp-layout::before {
+    display: none; /* on cache la ligne verticale */
+  }
+
+  .exp-row {
+    grid-template-columns: 1fr; /* une seule colonne */
+    margin-bottom: 24px;
+  }
+
+  .exp-timeline-col {
+    display: none; /* on cache la boule */
+  }
+
+  .exp-card-slot {
+    grid-column: 1;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .exp-card-slot:empty {
+    display: none;
+  }
+
+  .exp-card {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .exp-tags {
+    justify-content: center;
+  }
+}
+@media (max-width: 480px) {
+  .exp-section {
+    padding: 80px 20px;
+  }
+
+  .exp-card {
+    padding: 18px 20px;
+    max-width: 100%; /* prend toute la largeur dispo sur très petit écran */
+  }
+
+  .exp-card-title {
+    font-size: 16px;
+  }
+
+  .exp-card-desc {
+    font-size: 13px;
+  }
+}

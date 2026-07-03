@@ -1,0 +1,151 @@
+.edu-section {
+  width: 100%;
+  min-height: 100vh;
+  background: #bbbfbf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 80px;
+}
+
+.edu-title {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 200;
+  color: var(--color-dark);
+  letter-spacing: -1px;
+  margin-bottom: 48px;
+}
+
+/* ── CARDS ROW ── */
+.edu-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 860px;
+}
+
+/* ── CARTE DE BASE ── */
+.edu-card {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── CARTE MASTER (sombre) ── */
+.edu-card.featured {
+  background: #1a2332;
+}
+
+.edu-year {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(26, 35, 50, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.edu-year.light {
+  color: rgba(173, 182, 182, 0.55);
+}
+
+.edu-degree {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.edu-degree.light {
+  color: #d4dada;
+}
+
+.edu-school {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(26, 35, 50, 0.6);
+  margin-top: 8px;
+}
+
+.edu-school.light {
+  color: rgba(173, 182, 182, 0.7);
+}
+
+.edu-field {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(26, 35, 50, 0.45);
+}
+
+.edu-field.light {
+  color: rgba(173, 182, 182, 0.45);
+}
+
+/* ── PILL GRADUATED ── */
+.edu-pill {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(26, 35, 50, 0.1);
+  color: var(--color-dark);
+  width: fit-content;
+}
+
+/* ── CURRENTLY ENROLLED ── */
+.edu-current {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 300;
+  color: #8bb8a8;
+}
+
+.edu-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8bb8a8;
+  flex-shrink: 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .edu-section {
+    padding: 100px 40px;
+  }
+
+  .edu-cards {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .edu-section {
+    padding: 100px 24px;
+  }
+
+  .edu-card {
+    padding: 24px 20px;
+  }
+
+  .edu-degree {
+    font-size: 18px;
+  }
+
+
+  
+}

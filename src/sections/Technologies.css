@@ -1,0 +1,91 @@
+.tech-section {
+  width: 100%;
+  min-height: 100vh;
+  background: #bbbfbf; /* ← couleur Desktop 3 de ton Figma */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 80px;
+}
+
+.tech-title {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 200;
+  color: var(--color-dark);
+  margin-bottom: 60px;
+  letter-spacing: -1px;
+}
+
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px 64px;
+  align-items: center;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px);
+}
+
+.tech-icon {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  filter: brightness(0); /* tout en noir */
+}
+
+.tech-name {
+    display: none; /* ← cache le nom par défaut */
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-dark); /* couleur uniforme */
+  font-family: var(--font-main);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .tech-section {
+    padding: 100px 40px;
+  }
+
+  .tech-grid {
+    gap: 36px 48px;
+  }
+
+  .tech-icon {
+    width: 90px;
+    height: px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-section {
+    padding: 100px 24px;
+  }
+
+  .tech-title {
+    margin-bottom: 40px;
+  }
+
+  .tech-grid {
+    gap: 28px 32px;
+    justify-content: center;
+  }
+
+  .tech-icon {
+    width: 82px;
+    height: 82px;
+  }
+
+  .tech-name {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,158 @@
+.aboutme-section {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 80px;
+}
+
+.aboutme-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 200;
+  color: var(--color-dark);
+  letter-spacing: -1px;
+  margin-bottom: 40px;
+}
+
+.aboutme-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── GAUCHE — photo ── */
+.aboutme-left {
+  flex-shrink: 0;
+}
+
+.aboutme-photo {
+  width: 220px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* ── DROITE ── */
+.aboutme-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.aboutme-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.aboutme-text p {
+  font-size: clamp(13px, 1.3vw, 15px);
+  font-weight: 300;
+  color: var(--color-dark);
+  line-height: 1.75;
+}
+
+/* ── STATS ── */
+.aboutme-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-num {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 1;
+}
+
+.stat-num.small {
+  font-size: 18px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--color-dark);
+  opacity: 0.7;
+}
+
+/* ── BOUTON ── */
+.aboutme-btn {
+  background: var(--color-dark);
+  color: var(--color-bg);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-size: 14px;
+  font-family: var(--font-main);
+  font-weight: 400;
+  cursor: pointer;
+  width: fit-content;
+  transition: opacity 0.2s;
+}
+
+.aboutme-btn:hover { opacity: 0.8; }
+
+/* ── RESPONSIVE TABLETTE ── */
+@media (max-width: 900px) {
+  .aboutme-section {
+    padding: 100px 40px;
+  }
+
+  .aboutme-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .aboutme-left {
+    display: flex;
+    justify-content: center;
+  }
+
+  .aboutme-photo {
+    width: 180px;
+    height: 220px;
+  }
+
+  .aboutme-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 480px) {
+  .aboutme-section {
+    padding: 100px 24px;
+  }
+
+  .aboutme-photo {
+    width: 160px;
+    height: 200px;
+  }
+
+  .stat-num {
+    font-size: 22px;
+  }
+
+  .stat-num.small {
+    font-size: 16px;
+  }
+
+  .aboutme-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,270 @@
+.about-hero {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 120px 80px 60px;
+}
+
+/* ── MAIN ROW ── */
+.ah-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  flex: 1;
+}
+
+/* ── LEFT ── */
+.ah-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 580px;
+}
+
+.ah-name {
+  font-size: clamp(52px, 6.5vw, 100px);
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.0;
+  letter-spacing: -3px;
+}
+
+.ah-role {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 300;
+  color: var(--color-dark);
+  line-height: 1.3;
+}
+
+.ah-desc {
+  font-size: clamp(13px, 1.3vw, 15px);
+  font-weight: 400;
+  color: var(--color-dark);
+  line-height: 1.65;
+  opacity: 0.75;
+  max-width: 460px;
+}
+
+/* ── BUTTONS + SCROLL ── */
+.ah-btns {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.btn-dark {
+  background: var(--color-dark);
+  color: var(--color-bg);
+  border: none;
+  border-radius: 8px;
+  padding: 16px 32px;
+  font-size: 15px;
+  font-family: var(--font-main);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-dark:hover { opacity: 0.8; }
+
+.btn-light {
+  background: transparent;
+  color: var(--color-dark);
+  border: 1.5px solid var(--color-dark);
+  border-radius: 8px;
+  padding: 16px 32px;
+  font-size: 15px;
+  font-family: var(--font-main);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-light:hover {
+  background: var(--color-dark);
+  color: var(--color-bg);
+}
+
+/* ── SCROLL TO EXPLORE — à côté des boutons ── */
+.ah-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  margin-left: 16px;
+  font-size: 16px;
+  font-weight: 300;
+  color: black;
+  opacity: 0.55;
+}
+
+.ah-scroll-icon {
+  font-size: 40px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+/* ── RIGHT — grande image ── */
+.ah-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ombre flottante sous le clavier */
+.ah-right::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 45%;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  filter: blur(6px);
+  z-index: -1;
+  animation: ah-shadow-pulse 4s ease-in-out infinite;
+}
+
+/* le wrapper reprend la taille que .ah-keyboard avait avant */
+.ah-keyboard-wrap {
+  width: 100%;
+  max-width: 700px;
+  animation: ah-float 4s ease-in-out infinite;
+}
+
+.ah-keyboard {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.25));
+  transition: transform 0.3s ease;
+}
+
+.ah-keyboard:hover {
+  transform: scale(1.05);
+}
+
+@keyframes ah-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes ah-shadow-pulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.82);
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ah-keyboard-wrap,
+  .ah-right::after {
+    animation: none;
+  }
+}
+
+/* ── RESPONSIVE TABLETTE ── */
+@media (max-width: 900px) {
+  .about-hero {
+    padding: 120px 40px 60px;
+  }
+
+  .ah-main {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .ah-left {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .ah-desc { text-align: center; }
+
+  .ah-btns { justify-content: center; }
+
+  .ah-right {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .ah-right::after {
+    width: 50%;
+    height: 12px;
+    bottom: -4px;
+  }
+
+  .ah-keyboard-wrap {
+    max-width: 340px;
+    animation-name: ah-float-sm;
+  }
+}
+
+@keyframes ah-float-sm {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 480px) {
+
+    .ah-right {
+    display: none;  /* ← cache le clavier sur mobile */
+  }
+  .about-hero {
+    padding: 100px 24px 48px;
+  }
+
+  .ah-name {
+    font-size: 44px;
+    letter-spacing: -1px;
+  }
+
+  .ah-keyboard {
+    max-width: 260px;
+  }
+
+  .btn-dark, .btn-light {
+    padding: 13px 22px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .ah-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ah-scroll {
+    margin-left: 0;
+  }
+}
