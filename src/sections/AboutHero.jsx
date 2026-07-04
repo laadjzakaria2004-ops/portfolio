@@ -1,5 +1,5 @@
 import './AboutHero.css'
-import keyboard from '../assets/keyboard.png'
+import keyboard from '../assets/Keyboard.png'
 
 function AboutHero() {
   return (
