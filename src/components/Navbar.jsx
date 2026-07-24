@@ -9,20 +9,25 @@ const links = [
   { label: 'Contact',    id: 'contact' },
 ]
 
-function Navbar() {
-  const [active, setActive]   = useState('about-me')
-  const [visible, setVisible] = useState(false)
+function Navbar({ unlocked = false, onCastCrow }) {
+  const [active, setActive] = useState('about-me')
+  const [pastHero, setPastHero] = useState(false)
+
+  const visible = unlocked && pastHero
 
   useEffect(() => {
-    // Cacher navbar sur Hero
+    if (!unlocked) {
+      setPastHero(false)
+      return
+    }
+
     const hero = document.getElementById('hero')
     const heroObserver = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
+      ([entry]) => setPastHero(!entry.isIntersecting),
       { threshold: 0.2 }
     )
     if (hero) heroObserver.observe(hero)
 
-    // Détecter section active
     const observers = []
     links.forEach(({ id }) => {
       const el = document.getElementById(id)
@@ -35,8 +40,6 @@ function Navbar() {
       observers.push(observer)
     })
 
-    // Technologies = sous-section de About Me
-    // la ligne reste sur About Me quand on scroll dans Technologies
     const techEl = document.getElementById('technologies')
     if (techEl) {
       const techObserver = new IntersectionObserver(
@@ -49,11 +52,12 @@ function Navbar() {
 
     return () => {
       heroObserver.disconnect()
-      observers.forEach(o => o.disconnect())
+      observers.forEach((o) => o.disconnect())
     }
-  }, [])
+  }, [unlocked])
 
   const handleClick = (id) => {
+    onCastCrow?.()
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setActive(id)
   }

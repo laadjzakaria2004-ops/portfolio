@@ -17,6 +17,14 @@ html {
   scroll-behavior: smooth;
 }
 
+html.hero-locked,
+html.hero-locked body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 body {
   font-family: var(--font-main);
   background-color: var(--color-bg);

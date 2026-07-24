@@ -1,0 +1,377 @@
+.itachi-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.itachi-stage--back {
+  z-index: 0;
+}
+
+.itachi-stage--front {
+  z-index: 4;
+}
+
+.itachi-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.itachi-atmosphere--cast {
+  position: fixed;
+  z-index: 1200;
+}
+
+.itachi-cast .itachi-stage--cast {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.itachi-stage--cast-back {
+  z-index: 1100;
+}
+
+.itachi-stage--cast-front {
+  z-index: 1150;
+}
+
+.itachi-cast .itachi-origin {
+  top: 50%;
+}
+
+/* origin point behind the signature — where the clone bursts */
+.itachi-origin {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 0;
+  height: 0;
+}
+
+.itachi-mist {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(10, 10, 10, 0.18), transparent 42%),
+    radial-gradient(ellipse 80% 50% at 20% 30%, rgba(26, 35, 50, 0.12), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 80% 70%, rgba(26, 35, 50, 0.1), transparent 50%);
+  animation: mist-breathe 10s ease-in-out infinite alternate;
+}
+
+.itachi-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 55% at 50% 42%,
+    transparent 25%,
+    rgba(10, 12, 16, 0.28) 100%
+  );
+}
+
+.itachi-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* brief genjutsu flash — only on cast */
+.itachi-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.4), transparent 48%);
+  opacity: 0;
+}
+
+.itachi-cast .itachi-flash {
+  animation: genjutsu-flash 1.2s ease-out both;
+}
+
+.itachi-crow {
+  position: absolute;
+  width: var(--size);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.itachi-crow--far {
+  filter: blur(1.8px);
+}
+
+.itachi-crow--mid {
+  filter: blur(0.35px);
+}
+
+.itachi-crow--near {
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
+}
+
+.crow-sprite {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 419 / 287;
+}
+
+.crow-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  animation-duration: var(--flap);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.crow-frame--up { animation-name: flap-up; }
+.crow-frame--glide { animation-name: flap-glide; }
+.crow-frame--down { animation-name: flap-down; }
+
+@keyframes flap-up {
+  0%, 20% { opacity: 1; }
+  30% { opacity: 0; }
+  80% { opacity: 0; }
+  90%, 100% { opacity: 1; }
+}
+
+@keyframes flap-glide {
+  0%, 20% { opacity: 0; }
+  30%, 45% { opacity: 1; }
+  55%, 70% { opacity: 0; }
+  80% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+
+@keyframes flap-down {
+  0%, 45% { opacity: 0; }
+  55%, 70% { opacity: 1; }
+  80%, 100% { opacity: 0; }
+}
+
+/* ——— Crow Clone burst: plays once per click ——— */
+.itachi-burst {
+  left: 0;
+  top: 0;
+  animation: crow-burst var(--duration) cubic-bezier(0.22, 0.61, 0.36, 1) var(--delay) 1 forwards;
+}
+
+@keyframes crow-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.15) rotate(var(--rot));
+    opacity: 0;
+  }
+  6% {
+    transform: translate(-50%, -50%) scale(0.55) rotate(var(--rot));
+    opacity: var(--opacity);
+  }
+  14% {
+    transform: translate(-50%, -50%) scale(0.85) rotate(calc(var(--rot) + (8deg * var(--spin))));
+    opacity: var(--opacity);
+  }
+  28% {
+    transform:
+      translate(calc(-50% + var(--tx) * 0.35vw), calc(-50% + var(--ty) * 0.35vh))
+      scale(1)
+      rotate(calc(var(--rot) + (25deg * var(--spin))));
+    opacity: var(--opacity);
+  }
+  55% {
+    transform:
+      translate(calc(-50% + var(--tx) * 0.75vw), calc(-50% + var(--ty) * 0.75vh))
+      scale(1.05)
+      rotate(calc(var(--rot) + (55deg * var(--spin))));
+    opacity: calc(var(--opacity) * 0.85);
+  }
+  85% {
+    opacity: calc(var(--opacity) * 0.35);
+  }
+  100% {
+    transform:
+      translate(calc(-50% + var(--tx) * 1vw), calc(-50% + var(--ty) * 1vh))
+      scale(0.7)
+      rotate(calc(var(--rot) + (90deg * var(--spin))));
+    opacity: 0;
+  }
+}
+
+/* ——— Orbiting swarm ring ——— */
+.itachi-orbit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  animation-duration: var(--duration);
+  animation-delay: var(--delay);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.itachi-orbit--cw {
+  animation-name: orbit-cw;
+}
+
+.itachi-orbit--ccw {
+  animation-name: orbit-ccw;
+}
+
+.itachi-orbit-bird {
+  left: 0;
+  top: 0;
+  opacity: var(--opacity);
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.itachi-orbit--ccw .itachi-orbit-bird {
+  transform: translate(-50%, -50%) scaleX(-1) rotate(-90deg);
+}
+
+@keyframes orbit-cw {
+  from {
+    transform: rotate(var(--start)) translateX(var(--radius));
+  }
+  to {
+    transform: rotate(calc(var(--start) + 360deg)) translateX(var(--radius));
+  }
+}
+
+@keyframes orbit-ccw {
+  from {
+    transform: rotate(var(--start)) translateX(var(--radius));
+  }
+  to {
+    transform: rotate(calc(var(--start) - 360deg)) translateX(var(--radius));
+  }
+}
+
+/* ——— Post-burst flock sweeps ——— */
+.itachi-sweep {
+  left: 0;
+  animation-duration: var(--duration);
+  animation-delay: var(--delay);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.itachi-sweep--flip .crow-sprite {
+  transform: scaleX(-1);
+}
+
+.itachi-sweep--0 { animation-name: sweep-0; }
+.itachi-sweep--1 { animation-name: sweep-1; }
+.itachi-sweep--2 { animation-name: sweep-2; }
+
+.itachi-sweep--flip.itachi-sweep--0 { animation-name: sweep-0-rev; }
+.itachi-sweep--flip.itachi-sweep--1 { animation-name: sweep-1-rev; }
+.itachi-sweep--flip.itachi-sweep--2 { animation-name: sweep-2-rev; }
+
+@keyframes sweep-0 {
+  0% { transform: translate3d(-35vw, 0, 0) rotate(-4deg); opacity: 0; }
+  8% { opacity: var(--opacity); }
+  50% { transform: translate3d(45vw, -30px, 0) rotate(2deg); }
+  92% { opacity: var(--opacity); }
+  100% { transform: translate3d(120vw, 10px, 0) rotate(-1deg); opacity: 0; }
+}
+
+@keyframes sweep-1 {
+  0% { transform: translate3d(-35vw, 40px, 0) rotate(6deg); opacity: 0; }
+  8% { opacity: var(--opacity); }
+  50% { transform: translate3d(50vw, -50px, 0) rotate(3deg); }
+  100% { transform: translate3d(120vw, -80px, 0) rotate(8deg); opacity: 0; }
+}
+
+@keyframes sweep-2 {
+  0% { transform: translate3d(-35vw, -30px, 0) rotate(-8deg); opacity: 0; }
+  8% { opacity: var(--opacity); }
+  50% { transform: translate3d(48vw, 40px, 0) rotate(-3deg); }
+  100% { transform: translate3d(120vw, 70px, 0) rotate(-6deg); opacity: 0; }
+}
+
+@keyframes sweep-0-rev {
+  0% { transform: translate3d(120vw, 0, 0) rotate(4deg); opacity: 0; }
+  8% { opacity: var(--opacity); }
+  50% { transform: translate3d(40vw, -20px, 0) rotate(-2deg); }
+  100% { transform: translate3d(-35vw, 8px, 0) rotate(1deg); opacity: 0; }
+}
+
+@keyframes sweep-1-rev {
+  0% { transform: translate3d(120vw, -40px, 0) rotate(-5deg); opacity: 0; }
+  8% { opacity: var(--opacity); }
+  50% { transform: translate3d(45vw, 30px, 0) rotate(2deg); }
+  100% { transform: translate3d(-35vw, 60px, 0) rotate(6deg); opacity: 0; }
+}
+
+@keyframes sweep-2-rev {
+  0% { transform: translate3d(120vw, 50px, 0) rotate(7deg); opacity: 0; }
+  8% { opacity: var(--opacity); }
+  50% { transform: translate3d(50vw, -35px, 0) rotate(1deg); }
+  100% { transform: translate3d(-35vw, -55px, 0) rotate(-4deg); opacity: 0; }
+}
+
+/* ——— Feather scraps ——— */
+.itachi-feather {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--size);
+  height: calc(var(--size) * 2.2);
+  background: #050505;
+  border-radius: 60% 40% 55% 45%;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--rot));
+  animation: feather-scatter var(--duration) cubic-bezier(0.25, 0.1, 0.25, 1) var(--delay) 1 forwards;
+  filter: blur(0.3px);
+}
+
+@keyframes feather-scatter {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--rot)) scale(0.4);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform:
+      translate(calc(-50% + var(--tx)), calc(-50% + var(--ty)))
+      rotate(calc(var(--rot) + 160deg))
+      scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes genjutsu-flash {
+  0% { opacity: 0; }
+  12% { opacity: 0.55; }
+  35% { opacity: 0.15; }
+  100% { opacity: 0; }
+}
+
+@keyframes mist-breathe {
+  from { transform: scale(1); opacity: 0.85; }
+  to { transform: scale(1.08); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itachi-crow,
+  .itachi-orbit,
+  .itachi-feather,
+  .itachi-flash,
+  .itachi-mist,
+  .crow-frame {
+    animation: none !important;
+  }
+
+  .itachi-stage,
+  .itachi-atmosphere {
+    display: none;
+  }
+}

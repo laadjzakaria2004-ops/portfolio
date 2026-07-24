@@ -40,7 +40,7 @@ function AboutMe() {
             </div>
           </div>
 
-          <a href="/cv .pdf" download="Laadj_Zakaria_CV.pdf">
+          <a href="/cv .pdf" download="Laadj_Zakaria_CV .pdf">
           <button className="aboutme-btn">Download Resume</button>
             </a>
         </div>
