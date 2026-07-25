@@ -5,6 +5,7 @@ export const technologies = [
   { name: 'HTML',       icon: '/icons/html.svg' },
   { name: 'CSS',        icon: '/icons/css.svg' },
   { name: 'JavaScript', icon: '/icons/javascript.svg' },
+  { name: 'React',      icon: '/icons/react.svg' },
   { name: 'Supabase',   icon: '/icons/supabase.svg' },
   { name: 'PostgreSQL', icon: '/icons/postgersql.svg' },
   { name: 'Git',        icon: '/icons/git.svg' },
