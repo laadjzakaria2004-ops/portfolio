@@ -17,7 +17,7 @@ export const projects = [
     date: "2025",
     description: "Personal portfolio built with React and Vite. Fully responsive with smooth scroll animations and a clean minimalist design.",
     tags: ["React", "CSS", "Vite"],
-    github: "#"
+    github: "https://github.com/laadjzakaria2004-ops/portfolio.git"
   },
   {
     id: 3,

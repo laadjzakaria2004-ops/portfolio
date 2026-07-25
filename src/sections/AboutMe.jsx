@@ -16,7 +16,7 @@ function AboutMe() {
         <div className="aboutme-right">
           <div className="aboutme-text">
             <p>Software Engineering student (Master 1) driven by a genuine passion for full-stack development and software architecture.</p>
-            <p>I build complete web applications — handling both the frontend and backend — and I adapt quickly to new technologies and challenges.</p>
+            <p>I build web applications — handling both the frontend and backend — and I adapt quickly to new technologies and challenges.</p>
             <p>My projects during my studies gave me hands-on experience and a mindset focused on quality, scalability, and continuous improvement. I don't just learn — I build.</p>
             <p>Open to alternance, internship, or junior Software Engineer roles. Ready to bring motivation, dedication, and strong technical skills to the right team.</p>
           </div>
